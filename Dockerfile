@@ -6,7 +6,7 @@ COPY . /metrics
 WORKDIR /metrics
 
 # Setup
-RUN chmod +x /metrics/source/app/action/index.mjs \
+RUN pwd && chmod +x /metrics/source/app/action/index.mjs \
   # Install latest chrome dev package, fonts to support major charsets and skip chromium download on puppeteer install
   # Based on https://github.com/GoogleChrome/puppeteer/blob/master/docs/troubleshooting.md#running-puppeteer-in-docker
   && apt-get update \
@@ -26,7 +26,7 @@ RUN chmod +x /metrics/source/app/action/index.mjs \
   # Clean apt/lists
   && rm -rf /var/lib/apt/lists/* \
   # Install node modules and rebuild indexes
-  && npm ci \
+  && npm i \
   && npm run build
 
 # Environment variables
